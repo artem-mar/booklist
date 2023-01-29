@@ -5,7 +5,7 @@ const Collapse = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="container-sm mx-auto mb-3">
+    <div className="container-fluid mb-3">
       <Button
         className="btn-secondary btn-sm w-100 mb-2"
         onClick={() => setOpen(!open)}
