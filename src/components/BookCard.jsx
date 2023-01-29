@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../slices/booksSlice.js';
 import EditBookForm from './EditBookForm.jsx';
 
@@ -11,9 +11,9 @@ const BookCard = ({ book }) => {
     id, bookTitle, author, file,
   } = book;
 
+  const books = useSelector((state) => state.booklist.books);
   const handleDeleteBook = () => {
     dispatch(actions.deleteBook(id));
-    const books = JSON.parse(localStorage.getItem('books'));
     const filteredBooks = books.filter((b) => b.id !== id);
     localStorage.setItem('books', JSON.stringify(filteredBooks));
   };
@@ -28,7 +28,7 @@ const BookCard = ({ book }) => {
       ) : (
         <div className="container d-flex flex-column justify-content-between py-2">
           <div className="row">
-            <span className="fs-3 fw-normal">{bookTitle}</span>
+            <span className="fs-4 lh-sm fw-normal">{bookTitle}</span>
             <span className="fs-5 fw-light">{author}</span>
           </div>
           <div className="row gap-2 px-3">
