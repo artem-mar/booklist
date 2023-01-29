@@ -22,15 +22,20 @@ const AddBookForm = () => {
     dispatch(actions.addBook(book));
     setBooktitle('');
     setAuthor('');
+    setFile(null);
     e.target.reset();
   };
 
   const handleImgLoad = (e) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setFile(reader.result);
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    if (e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFile(reader.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      setFile(null);
+    }
   };
 
   return (
@@ -61,7 +66,7 @@ const AddBookForm = () => {
         <Form.Control
           type="file"
           onChange={handleImgLoad}
-          accept=".svg, .jpg, .jpeg, .png, .gif"
+          accept=".svg, .jpg, .jpeg, .png, .gif, .webp"
           className="form-control-sm"
         />
       </Form.Group>
