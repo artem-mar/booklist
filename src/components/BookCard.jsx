@@ -22,14 +22,14 @@ const BookCard = ({ book }) => {
     <div className="d-flex bg-light">
       <img alt="book cover" src={file} style={{ width: '145px', height: '205px' }} />
       {isEdit ? (
-        <div className="container d-flex align-items-center">
+        <div className="container d-flex align-items-center px-3">
           <EditBookForm editedBook={book} close={() => setEdit(false)} />
         </div>
       ) : (
-        <div className="container d-flex flex-column justify-content-between py-2">
+        <div className="container d-flex flex-column justify-content-between py-2 px-3">
           <div className="row">
-            <span className="fs-4 lh-sm fw-normal">{bookTitle}</span>
-            <span className="fs-5 fw-light">{author}</span>
+            <span className="fs-5 lh-sm mb-2">{bookTitle}</span>
+            <span className="text-muted"><em>{author}</em></span>
           </div>
           <div className="row gap-2 px-3">
             <Button className="col btn-sm" variant="outline-primary" onClick={() => setEdit(true)}>
